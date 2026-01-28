@@ -98,7 +98,8 @@ public class AssignmentOne {
         int maxSteals = character.equals("evilkai") ? (int) (Math.random() * 3) + 1 : 0;
 
         // Player's turn
-        while (!playerBusted && !playerStood) {
+        while (!playerBusted && !playerStood)
+        {
             String action = "";
             if (character.equals("kai")) {
                 System.out.print("Do you want to hit or stand? (hit/stand): ");
@@ -118,32 +119,40 @@ public class AssignmentOne {
                     System.out.println("You busted! Dealer wins.");
                     playerBusted = true;
                 }
-            } else if (action.equals("stand")) {
+            } 
+            else if (action.equals("stand")) {
                 playerStood = true;
-            } else if (character.equals("evilkai") && action.equals("steal")) {
-                if (stealAttempts < maxSteals) {
-                    String stolenCard = dealerCards.get(0);
-                    dealerCards.remove(0);
-                    playerCards.add(stolenCard);
-                    dealerTotal = calculateHandValue(dealerCards);
-                    playerTotal = calculateHandValue(playerCards);
-                    System.out.println("You stole the dealer's card: " + stolenCard);
-                    System.out.println("Your cards: " + playerCards + " | Total: " + playerTotal);
-                    System.out.println("Dealer's cards: " + dealerCards + " | Total: " + dealerTotal);
-                    stealAttempts++;
-                    // Chance of getting caught
-                    if (Math.random() < 0.25 * stealAttempts) {
-                        System.out.println("You've been caught stealing! Evil Kai is banished. Dealer wins!");
-                        return; // End game
+            } 
+         else if (character.equals("evilkai") && action.equals("steal")) {
+            if (stealAttempts < maxSteals) {
+                stealAttempts++;
+                String stolenCard = dealerCards.remove(0);
+                playerCards.add(stolenCard);
+                dealerTotal = calculateHandValue(dealerCards);
+                playerTotal = calculateHandValue(playerCards);
+                System.out.println("You stole: " + stolenCard);
+                System.out.println("Your cards: " + playerCards + " | Total: " + playerTotal);
+                double catchChance = 0.20 + (0.15 * stealAttempts);
+                if (Math.random() < catchChance) {
+                    System.out.println("You were caught stealing!");
+                    playerHP--;
+                    if (playerHP <= 0) {
+                        System.out.println("EvilKai has fallen...");
+                        return;
                     }
-                } else {
-                    System.out.println("You have no more steal attempts!");
+                } 
+                else {
+                    System.out.println("Steal successful. The shadows protect you.");
                 }
-            } else {
+            } 
+            else {
+                System.out.println("No more steal attempts!");
+            }
+        }
+            else {
                 System.out.println("Invalid action. Please try again.");
             }
         }
-
         if (playerBusted) {
             return; // Game over, dealer wins
         }
@@ -162,7 +171,6 @@ public class AssignmentOne {
         System.out.println("Final Results:");
         System.out.println("Your total: " + playerTotal);
         System.out.println("Dealer's total: " + dealerTotal);
-
         if (dealerTotal > 21 || playerTotal > dealerTotal) {
             if (character.equals("kai")) {
                 System.out.println("You win! As a noble samurai.");
