@@ -33,6 +33,18 @@ public class AssignmentOne {
             System.out.println("You have selected:");
             System.out.println(YELLOW + getEvilKaiArt() + RESET);
         }
+        //Short narrative
+        if (character.equals("kai")) {
+            System.out.println(BLUE +
+                    "Kai, the noble samurai, steps into the gambling hall.\n" +
+                    "You fight with honor. No tricks. No shortcuts.\n" +
+                    RESET);
+        } else {
+            System.out.println(YELLOW +
+                    "EvilKai rises from the shadows...\n" +
+                    "You bend the rules, but every sin has a price.\n" +
+                    RESET);
+        }
 
         // Main game loop for multiple rounds
         boolean playAgain = true;
@@ -53,9 +65,18 @@ public class AssignmentOne {
     }
 
     private static void playGame(String character, Scanner scanner) {
+    	int playerHP = 3;
+    	int dealerHP = 3;
+    	int round = 1;
         // Create and shuffle deck
-        List<String> deck = createDeck();
-        Collections.shuffle(deck);
+    	while (playerHP > 0 && dealerHP > 0) {
+
+    	    System.out.println("\n--- ROUND " + round + " ---");
+    	    round++;
+
+    	    List<String> deck = createDeck();
+    	    Collections.shuffle(deck);
+       
 
         // Deal initial cards
         List<String> playerCards = new ArrayList<>();
@@ -157,6 +178,8 @@ public class AssignmentOne {
                 System.out.println("Dealer wins!");
             }
         }
+    	}
+    	System.out.println("Your HP: " + playerHP + " | Dealer HP: " + dealerHP);
     }
 
     private static List<String> createDeck() {
