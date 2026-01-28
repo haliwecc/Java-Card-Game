@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class AssignmentOne {
+public class Game {
     public static final String RESET = "\033[0m";
     public static final String YELLOW = "\033[0;33m";
     public static final String BLUE = "\033[0;34m";
@@ -363,4 +363,5 @@ public class AssignmentOne {
        =-:::=%*%@@@@@                                      
                 """;
     }
+
 }
