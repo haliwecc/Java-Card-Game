@@ -172,24 +172,18 @@ public class AssignmentOne {
         System.out.println("Your total: " + playerTotal);
         System.out.println("Dealer's total: " + dealerTotal);
         if (dealerTotal > 21 || playerTotal > dealerTotal) {
-            if (character.equals("kai")) {
-                System.out.println("You win! As a noble samurai.");
-            } else {
-                System.out.println("You win! However, you chose to use EvilKai's powers to steal. This was a test and you failed.");
-            }
-        } else if (playerTotal == dealerTotal) {
-            System.out.println("It's a tie!");
-        } else {
-            if (character.equals("kai")) {
-                System.out.println("Dealer wins! Better luck next time. You can never become a samurai.");
-            } else {
-                System.out.println("Dealer wins!");
-            }
+            dealerHP--;
+            System.out.println("You win this round!");
+        } 
+        else if (playerTotal < dealerTotal) {
+            playerHP--;
+            System.out.println("You lose this round!");
+        } 
+        else {
+            System.out.println("Round tied. No damage dealt.");
         }
     	}
-    	System.out.println("Your HP: " + playerHP + " | Dealer HP: " + dealerHP);
     }
-
     private static List<String> createDeck() {
         List<String> deck = new ArrayList<>();
         String[] suits = {"H", "D", "C", "S"};
